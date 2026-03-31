@@ -38,7 +38,7 @@ Vercel requires specific variables to run your Django project securely. In the p
 - `ALLOWED_HOSTS`: `.vercel.app`
 
 ### 4. Build & Deploy
-- Vercel will automatically use the `vercel.json` and `requirements.txt` to build your project.
+- Vercel will use the `index.py`, `vercel.json`, and `requirements.txt` to build and route your project.
 - Click **"Deploy"** and wait for the process to finish.
 
 ### 5. Post-Deployment (Database & Media)
