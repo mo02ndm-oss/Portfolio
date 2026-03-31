@@ -6,7 +6,7 @@
       "use": "@vercel/python",
       "config": {
         "runtime": "python3.12",
-        "buildCommand": "python manage.py migrate --noinput && python manage.py collectstatic --noinput"
+        "buildCommand": "pip uninstall -y django-admin-interface django-colorfield || true && python -m pip install --upgrade pip setuptools wheel && python -m pip install -r requirements.txt && python manage.py migrate --noinput && python manage.py collectstatic --noinput"
       }
     }
   ],
