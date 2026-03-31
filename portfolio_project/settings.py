@@ -32,9 +32,10 @@ ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
 
 # Application definition
 
+# django-admin-interface is optional, avoid runtime DB-missing errors in ephemeral hosts
 INSTALLED_APPS = [
-    'admin_interface',
-    'colorfield',
+    # 'admin_interface',
+    # 'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -81,14 +82,14 @@ WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 DEFAULT_DB_PATH = BASE_DIR / "db.sqlite3"
 DATABASES = {
     "default": dj_database_url.config(
-        default=f"sqlite:///{DEFAULT_DB_PATH}",
+        default=os.environ.get("DATABASE_URL", f"sqlite:///{DEFAULT_DB_PATH}"),
         conn_max_age=600,
         ssl_require=False,
     )
 }
 
+# On Vercel with sqlite this is ephemeral, so prefer setting DATABASE_URL to postgres
 
-# Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
