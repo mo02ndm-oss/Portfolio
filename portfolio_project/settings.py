@@ -45,6 +45,11 @@ INSTALLED_APPS = [
     'core',
 ]
 
+# Force remove admin_interface from INSTALLED_APPS if it sneaks in via dependencies
+for block_app in ('admin_interface', 'colorfield'):
+    if block_app in INSTALLED_APPS:
+        INSTALLED_APPS.remove(block_app)
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
