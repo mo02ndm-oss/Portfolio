@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-0%$qumstmat9ti82_^*qz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1', 'localhost', '*']
+ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
+        default=f'sqlite:///{os.path.join("/tmp", "db.sqlite3") if not DEBUG else BASE_DIR / "db.sqlite3"}',
         conn_max_age=600,
         ssl_require=False
     )
