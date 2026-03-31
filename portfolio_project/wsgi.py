@@ -16,16 +16,14 @@ print(f"DEBUG: CWD is {os.getcwd()}")
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'portfolio_project.settings')
 
+# Get WSGI app object at module scope (required by Vercel Python runtime)
+application = get_wsgi_application()
+app = application
+
+# Optionally run migrations at startup (if this is desired and allowed by your environment)
 try:
-    # For ephemeral deploy hosts, run migrate at startup to ensure tables exist
     call_command('migrate', '--noinput', verbosity=0)
 except Exception as e:
     print(f"DEBUG: Migration at WSGI startup failed: {e}")
 
-try:
-    application = get_wsgi_application()
-    app = application
-    print("DEBUG: WSGI application loaded successfully.")
-except Exception as e:
-    print(f"DEBUG: Failed to load WSGI application: {e}")
-    raise
+print("DEBUG: WSGI application loaded successfully.")
