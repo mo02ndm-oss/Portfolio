@@ -10,6 +10,5 @@ def portfolio_details(request, username_slug):
     })
 
 def home(request):
-    # Root page could show a landing page or list of portfolios
-    profiles = Profile.objects.all()
-    return render(request, 'core/landing.html', {'profiles': profiles})
+    # Generic landing page without profile listings
+    return render(request, 'core/landing.html')
