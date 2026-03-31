@@ -3,3 +3,5 @@ whitenoise
 dj-database-url
 Pillow
 psycopg2-binary
+django-admin-interface
+django-colorfield
