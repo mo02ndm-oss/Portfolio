@@ -78,11 +78,12 @@ WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+DEFAULT_DB_PATH = BASE_DIR / "db.sqlite3"
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f'sqlite:///{os.path.join("/tmp", "db.sqlite3") if not DEBUG else BASE_DIR / "db.sqlite3"}',
+    "default": dj_database_url.config(
+        default=f"sqlite:///{DEFAULT_DB_PATH}",
         conn_max_age=600,
-        ssl_require=False
+        ssl_require=False,
     )
 }
 
