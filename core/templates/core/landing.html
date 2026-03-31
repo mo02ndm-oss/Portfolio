@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Directory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
+
+    <main class="flex-grow max-w-4xl mx-auto px-6 py-20 w-full text-center">
+        <h1 class="text-5xl font-extrabold mb-4 text-indigo-900">Portfolio Hub</h1>
+        <p class="text-xl text-slate-600 mb-12">Explore portfolios from our talented community.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {% for profile in profiles %}
+                <a href="{% url 'portfolio_details' profile.slug %}" 
+                   class="group bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-indigo-100 transition duration-300 flex flex-col items-center">
+                    {% if profile.profile_image %}
+                        <img src="{{ profile.profile_image.url }}" alt="{{ profile.name }}" class="w-24 h-24 rounded-full object-cover mb-4 border-2 border-indigo-50 group-hover:scale-105 transition duration-300">
+                    {% else %}
+                        <div class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center mb-4 text-slate-400">
+                            <i class="fas fa-user text-3xl"></i>
+                        </div>
+                    {% endif %}
+                    <h2 class="text-2xl font-bold text-slate-800 group-hover:text-indigo-600 transition">{{ profile.name }}</h2>
+                    <p class="text-slate-500 mt-2 text-sm line-clamp-2">{{ profile.bio|truncatewords:15 }}</p>
+                </a>
+            {% empty %}
+                <div class="col-span-full py-20 bg-white rounded-2xl border-2 border-dashed border-slate-200">
+                    <p class="text-slate-400">No portfolios created yet.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer class="py-10 text-center text-slate-400 text-sm">
+        <p>&copy; 2026 Portfolio App. All rights reserved.</p>
+        <a href="/admin" class="text-indigo-600 hover:underline mt-2 inline-block font-medium">Manage your Portfolio</a>
+    </footer>
+
+</body>
+</html>
