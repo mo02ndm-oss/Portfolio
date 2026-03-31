@@ -140,3 +140,12 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# force-disable admin_interface behavior at runtime
+try:
+    import admin_interface
+except ImportError:
+    pass
+else:
+    # If somehow installed, remove from INSTALLED_APPS to avoid template tag usage
+    INSTALLED_APPS = [a for a in INSTALLED_APPS if a not in ("admin_interface", "colorfield")]
