@@ -1,0 +1,50 @@
+[33mcommit ee8872b2e94a93fd91c71da141474f2b5d79ae3f[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: M.Adel <ndm.eis.mail@gmail.com>
+Date:   Tue Mar 31 23:11:46 2026 +0200
+
+    build: update Vercel configuration and add setuptools dependency
+    
+    Update vercel.json to use the correct WSGI entry point and specify Python 3.12 runtime.
+    Add setuptools to requirements.txt for proper dependency management.
+    Modify wsgi.py to add project root to sys.path and include debug logging for deployment troubleshooting.
+
+[33mcommit 61b06fee13509cf60ca501e7869d3acefab9e69d[m
+Author: M.Adel <ndm.eis.mail@gmail.com>
+Date:   Tue Mar 31 23:03:34 2026 +0200
+
+    build(vercel): update deployment configuration for Vercel platform
+    
+    - Replace wsgi.py entry point with index.py for Vercel compatibility
+    - Simplify requirements.txt by removing version constraints
+    - Disable admin_interface and colorfield apps temporarily
+    - Remove WhiteNoise middleware from wsgi.py as Vercel handles static files
+    - Update README to reflect new deployment approach
+
+[33mcommit 7992f015f1c933c08021ab5f71108047c9b27024[m
+Author: M.Adel <ndm.eis.mail@gmail.com>
+Date:   Tue Mar 31 22:54:39 2026 +0200
+
+    build: switch from Pipenv to requirements.txt and update Vercel config
+    
+    - Remove Pipenv files (Pipfile, Pipfile.lock) in favor of requirements.txt
+    - Add gunicorn and pin dependency versions in requirements.txt
+    - Update Vercel configuration to remove static file route and adjust WSGI settings
+    - Configure Whitenoise for static files in production
+    - Adjust database path to use /tmp in production for Vercel compatibility
+
+[33mcommit 6dd758939f2c5f3e4e14eb2e4b019d51d35ccb6e[m
+Author: M.Adel <ndm.eis.mail@gmail.com>
+Date:   Tue Mar 31 22:37:28 2026 +0200
+
+    chore: update sqlite database file
+    
+    This is an auto-generated commit due to changes in the database file. No functional code changes were made.
+
+[33mcommit d30f3ad04d45977e8af98543094873383ba0c5b1[m
+Author: M.Adel <ndm.eis.mail@gmail.com>
+Date:   Tue Mar 31 22:29:37 2026 +0200
+
+    build: add django-admin-interface and django-colorfield dependencies
+    
+    Update requirements.txt and INSTALLED_APPS to include the new packages.
+    Refactor static files storage configuration to use the new STORAGES dictionary format for Django 4.2+ compatibility.
