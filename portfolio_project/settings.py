@@ -84,7 +84,12 @@ WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DEFAULT_DB_PATH = BASE_DIR / "db.sqlite3"
+if os.environ.get('VERCEL'):
+    # On Vercel, use /tmp for SQLite to allow runtime migrations
+    DEFAULT_DB_PATH = "/tmp/db.sqlite3"
+else:
+    DEFAULT_DB_PATH = os.path.join(BASE_DIR, 'db.sqlite3')
+
 DATABASES = {
     "default": dj_database_url.config(
         default=os.environ.get("DATABASE_URL", f"sqlite:///{DEFAULT_DB_PATH}"),
@@ -129,7 +134,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Use WhiteNoise to serve static files even in production
 STORAGES = {
@@ -141,16 +146,10 @@ STORAGES = {
     },
 }
 
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_AUTOREFRESH = True
+
 MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# force-disable admin_interface behavior at runtime
-try:
-    import admin_interface
-except ImportError:
-    pass
-else:
-    # If somehow installed, remove from INSTALLED_APPS to avoid template tag usage
-    INSTALLED_APPS = [a for a in INSTALLED_APPS if a not in ("admin_interface", "colorfield")]
