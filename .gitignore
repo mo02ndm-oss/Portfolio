@@ -18,3 +18,4 @@ staticfiles/
 
 # Vercel
 .vercel
+db.sqlite3
