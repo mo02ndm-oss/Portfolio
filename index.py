@@ -21,6 +21,12 @@ try:
     print("DEBUG: Attempting runtime migrations...")
     call_command('migrate', '--noinput', verbosity=0)
     print("DEBUG: Runtime migrations successful.")
+    
+    # Temporary superuser creation for persistent DB setup
+    from django.contrib.auth.models import User
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'admin@example.com', 'admin123456')
+        print("DEBUG: Superuser 'admin' created successfully.")
 except Exception as e:
     print(f"DEBUG: Runtime migration failed: {e}")
 
