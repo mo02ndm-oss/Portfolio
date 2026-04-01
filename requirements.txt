@@ -7,3 +7,5 @@ gunicorn
 setuptools
 django-admin-interface
 django-colorfield
+django-cloudinary-storage
+cloudinary
