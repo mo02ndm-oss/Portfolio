@@ -34,8 +34,10 @@ git push origin main
 Vercel requires specific variables to run your Django project securely. In the project settings, add:
 - `DEBUG`: `False`
 - `SECRET_KEY`: (A long, unique, and random string)
-- `DATABASE_URL`: Your managed Postgres connection string (e.g., from Supabase or Neon).
+- `DATABASE_URL`: **IMPORTANT** Your managed Postgres connection string (e.g., from Supabase or Neon). 
 - `ALLOWED_HOSTS`: `.vercel.app`
+
+> **⚠️ NOTE on Persistence**: Without a `DATABASE_URL`, Vercel will use a temporary SQLite database. This database is **erased** every time the server goes idle (every few minutes). For your profiles and projects to stay saved permanently, you **must** connect a Postgres database via the `DATABASE_URL` variable.
 
 ### 4. Build & Deploy
 - Vercel will use the `index.py`, `vercel.json`, and `requirements.txt` to build and route your project.

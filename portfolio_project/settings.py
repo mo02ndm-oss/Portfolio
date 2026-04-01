@@ -28,6 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-0%$qumstmat9ti82_^*qz
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 # Session and Cookie Settings for Vercel stability
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_AGE = 86400  # 1 day
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
