@@ -4,16 +4,59 @@ A high-end, modern, and fully responsive multi-user portfolio platform built wit
 
 ---
 
-## ✨ Key Features
-- **Multi-User Architecture**: Every user gets a unique, isolated portfolio.
-- **Premium Design**: Sophisticated glassmorphism aesthetic with floating animations.
-- **Dynamic Slugs**: Access portfolios via clean URLs like `/username`.
-- **Customizable**: Toggle project visibility and social links directly from the admin.
-- **Data Isolation**: Strict permissions in the admin panel ensure users only see and edit their own content.
+## 🌟 Project Overview
+**FolioHub** is a sophisticated platform that allows multiple users to create, manage, and showcase their professional portfolios through a centralized, high-performance web application. Designed for freelancers, developers, and creative professionals, it offers a seamless blend of aesthetics and functionality.
 
 ---
 
-## 🛠️ Deployment Plan to Vercel
+## ✨ Key Features
+
+### 👤 Multi-User Architecture
+- **Unique Slugs**: Each user has their own dedicated portfolio page accessible via a clean, professional URL (e.g., `yourdomain.com/username`).
+- **Profile Customization**: Users can personalize their bio, profile image, and social media links (LinkedIn, GitHub, Twitter).
+- **Project Showcase**: Users can add multiple projects, each with its own title, description, and visibility toggle.
+
+### 🔒 Admin & Data Isolation
+- **Staff User Isolation**: A custom Django admin implementation ensures that staff users can **only see and edit their own** profiles and projects.
+- **Role-Based Access**: Superusers maintain full oversight of the entire platform, while regular users have an isolated workspace.
+- **Easy Management**: Add, update, or hide projects with a single click.
+
+### 🎨 Premium UI/UX
+- **Glassmorphism Design**: A modern aesthetic featuring frosted glass effects, subtle blurs, and elegant transparencies.
+- **Responsive Layout**: Fully optimized for mobile, tablet, and desktop viewing.
+- **Interactive Elements**: Smooth hover effects and floating animations powered by Tailwind CSS.
+
+### ☁️ Serverless & Cloud Ready
+- **Vercel Optimized**: Built to run on Vercel's high-speed serverless infrastructure.
+- **Neon Postgres**: Integration with Neon for a persistent, scalable database.
+- **Cloudinary Integration**: Persistent, high-speed storage for user profile images and project assets.
+- **WhiteNoise Static Serving**: High-performance serving of CSS and JavaScript files in production.
+
+---
+
+## 🏗️ Technology Stack
+
+| Layer | Technology |
+| :--- | :--- |
+| **Backend** | Django 5.1+, Python 3.12 |
+| **Frontend** | Tailwind CSS, Glassmorphism UI |
+| **Database** | Neon Postgres (Production), SQLite (Local) |
+| **Storage** | Cloudinary (Media), WhiteNoise (Static) |
+| **Deployment** | Vercel (Serverless Functions) |
+
+---
+
+## 📂 Project Structure
+
+- **`core/`**: The heart of the application, containing the `Profile` and `Project` models, portfolio views, and admin customizations.
+- **`portfolio_project/`**: Project-level settings, URLs, and WSGI/ASGI configurations.
+- **`index.py`**: The main serverless entry point for Vercel, handling runtime migrations and application initialization.
+- **`vercel.json`**: Configuration for Vercel deployments, defining runtimes and routing.
+- **`requirements.txt`**: Complete list of Python dependencies for a stable environment.
+
+---
+
+## 🛠️ Deployment Instructions
 
 Follow these steps to deploy your project to Vercel:
 
