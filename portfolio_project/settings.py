@@ -98,19 +98,16 @@ WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-if os.environ.get('VERCEL'):
-    # On Vercel, use /tmp for SQLite to allow runtime migrations
-    DEFAULT_DB_PATH = "/tmp/db.sqlite3"
-else:
-    DEFAULT_DB_PATH = os.path.join(BASE_DIR, 'db.sqlite3')
-
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("DATABASE_URL", f"sqlite:///{DEFAULT_DB_PATH}"),
+        default=f'sqlite:///{os.path.join(BASE_DIR, "db.sqlite3")}',
         conn_max_age=600,
         ssl_require=False,
     )
 }
+
+# IMPORTANT: On Vercel, SQLite is ephemeral. 
+# Connect a Postgres DB via DATABASE_URL to make your data permanent.
 
 # On Vercel with sqlite this is ephemeral, so prefer setting DATABASE_URL to postgres
 
