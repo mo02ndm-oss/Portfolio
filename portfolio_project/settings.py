@@ -17,6 +17,24 @@ import cloudinary.uploader
 import cloudinary.api
 from pathlib import Path
 
+# Cloudinary Debugging (Check if variables exist)
+CLOUDINARY_CLOUD_NAME = os.environ.get('CLOUDINARY_CLOUD_NAME')
+CLOUDINARY_API_KEY = os.environ.get('CLOUDINARY_API_KEY')
+CLOUDINARY_API_SECRET = os.environ.get('CLOUDINARY_API_SECRET')
+
+if not CLOUDINARY_CLOUD_NAME:
+    print("DEBUG ERROR: CLOUDINARY_CLOUD_NAME is missing from environment!")
+else:
+    print(f"DEBUG: Found CLOUDINARY_CLOUD_NAME: {CLOUDINARY_CLOUD_NAME[:3]}***")
+
+# Explicitly configure the cloudinary library immediately
+cloudinary.config(
+    cloud_name=CLOUDINARY_CLOUD_NAME,
+    api_key=CLOUDINARY_API_KEY,
+    api_secret=CLOUDINARY_API_SECRET,
+    secure=True
+)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -160,18 +178,10 @@ STORAGES = {
 }
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+    'CLOUD_NAME': CLOUDINARY_CLOUD_NAME,
+    'API_KEY': CLOUDINARY_API_KEY,
+    'API_SECRET': CLOUDINARY_API_SECRET,
 }
-
-# Explicitly configure the cloudinary library
-cloudinary.config(
-    cloud_name=CLOUDINARY_STORAGE['CLOUD_NAME'],
-    api_key=CLOUDINARY_STORAGE['API_KEY'],
-    api_secret=CLOUDINARY_STORAGE['API_SECRET'],
-    secure=True
-)
 
 WHITENOISE_USE_FINDERS = True
 WHITENOISE_AUTOREFRESH = True
