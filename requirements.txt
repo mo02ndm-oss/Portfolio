@@ -5,3 +5,5 @@ Pillow
 psycopg2-binary
 gunicorn
 setuptools
+django-admin-interface
+django-colorfield
